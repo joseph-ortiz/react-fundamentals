@@ -6,6 +6,7 @@ class App extends React.Component{
     constructor() {
         super();
         this.state = { txt: 'this is the state text'}
+        this.update = this.update.bind(this)
     }
     update(e) {
       this.setState({txt: e.target.value})
@@ -14,9 +15,10 @@ class App extends React.Component{
         let txt = this.props.txt
         return (
             <div>
-            <input type='text' onChange={this.update.bind(this)} />
-            <h1>Hello World</h1>
-            <b>{this.state.txt}</b>
+            <Widget txt={this.state.txt} update={this.update}/>
+            <Widget txt={this.state.txt} update={this.update}/>
+            <Widget txt={this.state.txt} update={this.update}/>
+            <Widget txt={this.state.txt} update={this.update}/>
             </div>
         );
     }
@@ -33,6 +35,16 @@ App.propTypes = {
 
 App.defaultProps = {
     txt: 'this is the default txt'
+}
+
+const Widget = (props) => {
+    return (
+        <div>
+            <input type="text"
+            onChange={props.update}/>
+           <h1>{props.txt}</h1>
+        </div>
+    )
 }
 
 ReactDOM.render(
